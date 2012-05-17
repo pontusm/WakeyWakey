@@ -1,0 +1,27 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@{
+  Layout = "Master.cshtml";
+}
+
+<div class="page-header">
+  <h1>New machine</h1>
+</div>
+<p>Please fill in the details of the new machine.</p>
+<div class="row">
+  <div class="span8">
+    <form class="well" method="POST">
+      <label for="Name">Name</label>
+      <input type="text" name="Name"/>
+
+      <label for="HostName">Hostname or IP address</label>
+      <input type="text" name="HostName"/>
+
+      <label for="MacAddress">MAC address (leave empty to attempt automatic lookup)</label>
+      <input type="text" name="MacAddress"/>
+
+      <div class="clearfix">
+        <button class="btn" type="submit">Create</button>
+      </div>
+    </form>
+  </div>
+</div>

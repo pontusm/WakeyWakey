@@ -1,0 +1,30 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@{
+  Layout = "Master.cshtml";
+}
+
+<div class="page-header">
+  <h1>Machines</h1>
+</div>
+<p>This is the list of machines you can send a wakey wakey call to.</p>
+<div class="row">
+  <div class="span8">
+    <table class="table table-bordered table-striped" id="machineTable">
+        <tbody>
+            @foreach (var machine in Model) {
+            <tr>
+                <td>
+                    <h3>@machine.Name</h3>
+                    <p>@machine.HostName</p>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="#" rel="nofollow"><i class="icon-bell icon-white"></i> Wakey Wakey</a>
+                    <a class="btn" href="#" rel="nofollow">Ping</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/machines/new">Add machine</a>
+  </div>
+</div>
