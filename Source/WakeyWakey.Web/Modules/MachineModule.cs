@@ -21,7 +21,7 @@ namespace WakeyWakey.Web.Modules
             Post["/new"] = CreateNewMachine;
             //Get["/{id}/edit"] = EditMachine;
             //Post["/{id}/edit"] = DoEditMachine;
-            //Delete["/{id}"] = DoDeleteMachine;
+            Delete["/{id}"] = DeleteMachine;
             Post["/{id}/wake"] = DoWakeMachine;
         }
 
@@ -55,6 +55,18 @@ namespace WakeyWakey.Web.Modules
             _catalog.SaveChanges();
             
             return Response.AsRedirect("/");
+        }
+
+        private Response DeleteMachine(dynamic parameters)
+        {
+            var id = (int) parameters.id;
+
+            var machine = _catalog.Machines.FirstOrDefault(x => x.Id == id);
+            
+            _catalog.Machines.Remove(machine);
+            _catalog.SaveChanges();
+
+            return Response.AsJson(JsonResult.OK());
         }
 
         private Response DoWakeMachine(dynamic parameters)
