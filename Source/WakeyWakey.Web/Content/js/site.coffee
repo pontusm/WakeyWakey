@@ -47,3 +47,19 @@ $ ->
                 target.removeAttr("disabled")
                 alert(result.message)
     )
+
+    # Setup wake buttons
+    $("a.machine-wake").click((ev) ->
+        ev.preventDefault()
+        target = $(ev.currentTarget)
+
+        target.attr("disabled", "disabled")
+        $.ajax this.href,
+            type: 'POST'
+            success: (result) ->
+                alert("Wake up signal has been sent.")
+                target.removeAttr("disabled")
+            error: (result) ->
+                alert(result.message)
+                target.removeAttr("disabled")
+    )

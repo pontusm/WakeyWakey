@@ -20,7 +20,7 @@
         return $("#lookupmac").removeAttr("disabled");
       });
     });
-    return $("a.machine-remove").click(function(ev) {
+    $("a.machine-remove").click(function(ev) {
       var target;
       ev.preventDefault();
       target = $(ev.currentTarget);
@@ -42,6 +42,23 @@
         error: function(result) {
           target.removeAttr("disabled");
           return alert(result.message);
+        }
+      });
+    });
+    return $("a.machine-wake").click(function(ev) {
+      var target;
+      ev.preventDefault();
+      target = $(ev.currentTarget);
+      target.attr("disabled", "disabled");
+      return $.ajax(this.href, {
+        type: 'POST',
+        success: function(result) {
+          alert("Wake up signal has been sent.");
+          return target.removeAttr("disabled");
+        },
+        error: function(result) {
+          alert(result.message);
+          return target.removeAttr("disabled");
         }
       });
     });

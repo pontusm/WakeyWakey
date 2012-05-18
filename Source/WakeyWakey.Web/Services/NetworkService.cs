@@ -32,8 +32,6 @@ namespace WakeyWakey.Web.Services
 
         public void SendMagicPacket(byte[] macAddress)
         {
-            //var macAddress = new byte[] { 0x00, 0xe1, 0xff, 0x65, 0x23, 0x10 };
-
             //Construct the packet 
             var packet = new List<byte>();
 

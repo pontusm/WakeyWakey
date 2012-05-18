@@ -1,5 +1,8 @@
-﻿using Nancy;
+﻿using System;
+using System.Globalization;
+using Nancy;
 using WakeyWakey.Web.Models;
+using WakeyWakey.Web.Services;
 using WakeyWakey.Web.ViewModels;
 using System.Linq;
 using Nancy.ModelBinding;
@@ -9,10 +12,12 @@ namespace WakeyWakey.Web.Modules
     public class MachineModule : NancyModule
     {
         readonly WakeyCatalog _catalog;
+        readonly NetworkService _networkService;
 
-        public MachineModule(WakeyCatalog catalog) : base("/machines")
+        public MachineModule(WakeyCatalog catalog, NetworkService networkService) : base("/machines")
         {
             _catalog = catalog;
+            _networkService = networkService;
 
             Get["/"] = ListMachines;
 
@@ -35,7 +40,7 @@ namespace WakeyWakey.Web.Modules
         private Response GetMachine(dynamic parameters)
         {
             var id = (int) parameters.id;
-            var machine = _catalog.Machines.FirstOrDefault(x => x.Id == id);
+            var machine = FindMachineById(id);
             if (machine == null)
                 return HttpStatusCode.NotFound;
 
@@ -61,8 +66,10 @@ namespace WakeyWakey.Web.Modules
         {
             var id = (int) parameters.id;
 
-            var machine = _catalog.Machines.FirstOrDefault(x => x.Id == id);
-            
+            var machine = FindMachineById(id);
+            if (machine == null)
+                return HttpStatusCode.NotFound;
+
             _catalog.Machines.Remove(machine);
             _catalog.SaveChanges();
 
@@ -71,7 +78,28 @@ namespace WakeyWakey.Web.Modules
 
         private Response DoWakeMachine(dynamic parameters)
         {
+            var id = (int) parameters.id;
+            var machine = FindMachineById(id);
+            if (machine == null)
+                return HttpStatusCode.NotFound;
+
+            if (string.IsNullOrEmpty(machine.MacAddress))
+                return Response.AsJson(JsonResult.Error("No valid MAC address registered."));
+
+            byte[] macAddress = machine.MacAddress.Split(':')
+                .Select(x => byte.Parse(x, NumberStyles.HexNumber))
+                .ToArray();
+            if (macAddress.Length != 6)
+                return Response.AsJson(JsonResult.Error("MAC address length is incorrect."));
+
+            _networkService.SendMagicPacket(macAddress);
+
             return Response.AsJson(JsonResult.OK());
+        }
+
+        private Machine FindMachineById(int id)
+        {
+            return _catalog.Machines.FirstOrDefault(x => x.Id == id);
         }
     }
 }
