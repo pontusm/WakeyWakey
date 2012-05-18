@@ -63,3 +63,21 @@ $ ->
                 alert(result.message)
                 target.removeAttr("disabled")
     )
+
+    # Setup ping buttons
+    $("a.machine-ping").click((ev) ->
+        ev.preventDefault()
+        target = $(ev.currentTarget)
+
+        target.attr("disabled", "disabled")
+        $.ajax this.href,
+            type: 'POST'
+            success: (result) ->
+                if (result.ok)
+                    alert("Machine is alive!")
+                else
+                    alert(result.message)
+                target.removeAttr("disabled")
+            error: (result) ->
+                target.removeAttr("disabled")
+    )

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Net.NetworkInformation;
 using Nancy;
 using WakeyWakey.Web.Models;
 using WakeyWakey.Web.Services;
@@ -28,6 +29,7 @@ namespace WakeyWakey.Web.Modules
             //Post["/{id}/edit"] = DoEditMachine;
             Delete["/{id}"] = DeleteMachine;
             Post["/{id}/wake"] = DoWakeMachine;
+            Post["/{id}/ping"] = DoPingMachine;
         }
 
         private Response ListMachines(dynamic parameters)
@@ -93,6 +95,23 @@ namespace WakeyWakey.Web.Modules
                 return Response.AsJson(JsonResult.Error("MAC address length is incorrect."));
 
             _networkService.SendMagicPacket(macAddress);
+
+            return Response.AsJson(JsonResult.OK());
+        }
+
+        private Response DoPingMachine(dynamic parameters)
+        {
+            var id = (int) parameters.id;
+            var machine = FindMachineById(id);
+            if (machine == null)
+                return HttpStatusCode.NotFound;
+
+            if (string.IsNullOrEmpty(machine.HostName))
+                return Response.AsJson(JsonResult.Error("No valid host name registered."));
+
+            var reply = _networkService.Ping(machine.HostName, TimeSpan.FromSeconds(5));
+            if (reply.Status != IPStatus.Success)
+                return Response.AsJson(JsonResult.Error(string.Format("Ping error: {0}", reply.Status)));
 
             return Response.AsJson(JsonResult.OK());
         }

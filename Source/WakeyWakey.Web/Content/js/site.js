@@ -45,7 +45,7 @@
         }
       });
     });
-    return $("a.machine-wake").click(function(ev) {
+    $("a.machine-wake").click(function(ev) {
       var target;
       ev.preventDefault();
       target = $(ev.currentTarget);
@@ -58,6 +58,26 @@
         },
         error: function(result) {
           alert(result.message);
+          return target.removeAttr("disabled");
+        }
+      });
+    });
+    return $("a.machine-ping").click(function(ev) {
+      var target;
+      ev.preventDefault();
+      target = $(ev.currentTarget);
+      target.attr("disabled", "disabled");
+      return $.ajax(this.href, {
+        type: 'POST',
+        success: function(result) {
+          if (result.ok) {
+            alert("Machine is alive!");
+          } else {
+            alert(result.message);
+          }
+          return target.removeAttr("disabled");
+        },
+        error: function(result) {
           return target.removeAttr("disabled");
         }
       });

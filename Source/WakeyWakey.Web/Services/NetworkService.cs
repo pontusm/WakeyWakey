@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Linq;
@@ -47,6 +48,11 @@ namespace WakeyWakey.Web.Services
             var client = new UdpClient();
             client.Connect(IPAddress.Broadcast, 0);
             client.Send(packet.ToArray(), packet.Count);
+        }
+
+        public PingReply Ping(string hostName, TimeSpan timeout)
+        {
+            return new Ping().Send(hostName, (int)timeout.TotalMilliseconds);
         }
     }
 }
