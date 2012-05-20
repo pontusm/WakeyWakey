@@ -50,6 +50,10 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\SqlServerCompact.4.0.8482.1\lib\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -151,7 +155,11 @@
   <PropertyGroup>
     <PostBuildEvent>
 start /MIN xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.0.11.0\BuildProviders\Nancy.ViewEngines.Razor.BuildProviders.dll" "$(ProjectDir)bin"
-start /MIN xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.0.11.0\lib\Net40\Nancy.ViewEngines.Razor.dll" "$(ProjectDir)bin"</PostBuildEvent>
+start /MIN xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.0.11.0\lib\Net40\Nancy.ViewEngines.Razor.dll" "$(ProjectDir)bin"
+if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
+xcopy /s /y "$(SolutionDir)packages\SqlServerCompact.4.0.8482.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
+if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
+xcopy /s /y "$(SolutionDir)packages\SqlServerCompact.4.0.8482.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
