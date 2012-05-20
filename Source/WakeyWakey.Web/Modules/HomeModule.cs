@@ -7,6 +7,7 @@ namespace WakeyWakey.Web.Modules
         public HomeModule()
         {
             Get["/"] = x => Response.AsRedirect("/machines");
+            Get["/about"] = x => View["about"];
         }
 
     }
