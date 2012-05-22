@@ -25,6 +25,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeApp_Data>true</ExcludeApp_Data>
+    <PackageAsSingleFile>true</PackageAsSingleFile>
+    <DeployIisAppPath>Default Web Site/WakeyWakey</DeployIisAppPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +36,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeApp_Data>true</ExcludeApp_Data>
+    <DeployIisAppPath>Default Web Site/WakeyWakey</DeployIisAppPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">

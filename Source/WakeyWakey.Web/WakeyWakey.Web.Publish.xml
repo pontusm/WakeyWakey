@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="\\wipdev02\d$\Projects\WakeyWakey" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Web.config" publishTime="05/19/2012 15:45:51" />
+    <file relUrl="Content/js/bootstrap.min.js" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="bin/EntityFramework.dll" publishTime="05/19/2012 15:38:15" />
+    <file relUrl="Content/css/bootstrap-responsive.css" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="bin/Nancy.dll" publishTime="05/19/2012 15:38:19" />
+    <file relUrl="Views/Machine/List.cshtml" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="packages.config" publishTime="05/19/2012 15:44:37" />
+    <file relUrl="Content/css/bootstrap.min.css" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="Content/css/bootstrap.css" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="bin/WakeyWakey.Web.dll" publishTime="05/19/2012 15:44:56" />
+    <file relUrl="bin/EntityFramework.xml" publishTime="05/19/2012 15:38:15" />
+    <file relUrl="bin/System.Web.Razor.dll" publishTime="05/19/2012 15:38:23" />
+    <file relUrl="bin/Nancy.Hosting.Aspnet.dll" publishTime="05/19/2012 15:38:21" />
+    <file relUrl="Content/img/glyphicons-halflings-white.png" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="bin/System.Data.SqlServerCe.dll" publishTime="05/19/2012 15:44:35" />
+    <file relUrl="Views/Machine/New.cshtml" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="bin/Nancy.ViewEngines.Razor.dll" publishTime="05/19/2012 15:38:23" />
+    <file relUrl="bin/WakeyWakey.Web.pdb" publishTime="05/19/2012 15:44:56" />
+    <file relUrl="Content/img/glyphicons-halflings.png" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="Views/Master.cshtml" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="Content/css/bootstrap-responsive.min.css" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="Content/img/loader.gif" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="Content/js/bootstrap.js" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="Views/404.cshtml" publishTime="05/19/2012 15:33:24" />
+    <file relUrl="Content/js/site.js" publishTime="05/19/2012 15:33:24" />
+  </publishProfile>
+</publishData>
